@@ -72,9 +72,8 @@ public class TodoService {
 
     // Hibernate specific API, not part of JPA 2.1
 
-    Session session = (Session) em.getDelegate();
     Example todoExample = Example.create(todo).enableLike(MatchMode.START).excludeZeroes();
 
-    return session.createCriteria(Todo.class).add(todoExample).list();
+    return em.unwrap(Session.class).createCriteria(Todo.class).add(todoExample).list();
   }
 }
