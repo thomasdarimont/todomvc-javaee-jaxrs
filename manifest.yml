@@ -1,0 +1,11 @@
+applications:
+- name: todomvc-javaee
+  memory: 1024M
+  instances: 1
+  host: todomvc-javaee
+  container: Wildfly
+#  domain: cfapps.io
+  path: target/todomvc-javaee.war
+#  buildpack: https://github.com/thomasdarimont/wildfly-buildpack.git
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '[memory_calculator: {memory_heuristics: {heap: 1284, metaspace: 341, native: 574, stack: 1}}]'
