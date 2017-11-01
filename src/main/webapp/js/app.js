@@ -13,7 +13,7 @@
 		// this.storage = new app.Store(name);
 
     // API based storage
-		this.storage = new app.BackendStore('http://localhost:8080/todomvc-javaee/resources/todos');
+		this.storage = new app.BackendStore('/todomvc-javaee/resources/todos');
 
 		this.model = new app.Model(this.storage);
 		this.template = new app.Template();
