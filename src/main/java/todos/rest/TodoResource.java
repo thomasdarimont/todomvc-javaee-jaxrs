@@ -27,19 +27,19 @@ import java.util.List;
  *   curl -v -H "Accept: application/json" http://localhost:8080/todomvc-javaee/resources/todos
  *
  *   # Create new todo
- *   curl -v -X POST -H "Content-type: application/json" -d '{ "title":"Test TODO", "completed":false }' http://localhost:8080/todomvc-javaee/resources/todos
+ *   curl -v -X POST -H "Content-type: application/json" -d '{ "title":"Test TODO", "completed":false }' http://localhost:8080/resources/todos
  *
  *   # show todo with id 1
- *   curl -v -H "Accept: application/json" http://localhost:8080/todomvc-javaee/resources/todos/1
+ *   curl -v -H "Accept: application/json" http://localhost:8080/resources/todos/1
  *
  *   # delete todo with id 1
- *   curl -v -X DELETE http://localhost:8080/todomvc-javaee/resources/todos/1
+ *   curl -v -X DELETE http://localhost:8080/resources/todos/1
  *
  *   # search for all todo's with titles beginning with 'test'
- *   curl -v -d '{"title":"test"}' -H "Content-type: application/json" -H "Accept: application/json" http://localhost:8080/todomvc-javaee/resources/todos/search
+ *   curl -v -d '{"title":"test"}' -H "Content-type: application/json" -H "Accept: application/json" http://localhost:8080/resources/todos/search
  *
  *   # search for all todo's with completed = true
- *   curl -v -d '{"title":"test"}' -H "Content-type: application/json" -H "Accept: application/json" http://localhost:8080/todomvc-javaee/resources/todos/search
+ *   curl -v -d '{"title":"test"}' -H "Content-type: application/json" -H "Accept: application/json" http://localhost:8080/resources/todos/search
  * }
  * </pre>
  */
