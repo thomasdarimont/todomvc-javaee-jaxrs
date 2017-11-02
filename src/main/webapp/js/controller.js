@@ -111,18 +111,6 @@
   Controller.prototype.editItem = function (id) {
     var self = this;
     self.model.read(id, function (data) {
-
-      // var item = null;
-      // for (var i = 0; i < data.length; i++) {
-      //   if (data[i].id === id) {
-      //     item = data[i];
-      //   }
-      // }
-      //
-      // if (!item) {
-      //   return;
-      // }
-
       self.view.render('editItem', {id: id, title: data[0].title});
     });
   };

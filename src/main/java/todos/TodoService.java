@@ -27,10 +27,12 @@ public class TodoService {
   }
 
   public Todo getById(Long id) {
+
     return em.find(Todo.class, id);
   }
 
   public List<Todo> findAll() {
+
     return em.createQuery("from " + Todo.class.getName(), Todo.class).getResultList();
   }
 

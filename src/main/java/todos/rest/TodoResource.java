@@ -66,10 +66,7 @@ public class TodoResource {
   @GET
   @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
   public Response list() {
-
-    List<Todo> result = this.todos.findAll();
-
-    return Response.ok(result).build();
+    return Response.ok(this.todos.findAll()).build();
   }
 
   @GET
