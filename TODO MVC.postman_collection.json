@@ -24,6 +24,33 @@
 			"response": []
 		},
 		{
+			"name": "Search TODOs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Test\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/search",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "List TODOs as XML",
 			"request": {
 				"method": "GET",
