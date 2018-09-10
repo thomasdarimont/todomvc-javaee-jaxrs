@@ -5,6 +5,14 @@
     <artifactId>todomvc-javaee</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
@@ -24,8 +32,6 @@
             <version>5.0.12.Final</version>
             <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
     <build>
         <finalName>todomvc-javaee</finalName>
@@ -40,12 +46,4 @@
             </plugin>
         </plugins>
     </build>
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-    </properties>
-
-
 </project>
