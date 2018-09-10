@@ -12,6 +12,7 @@ target/
 .idea/**/tasks.xml
 .idea/dictionaries
 .idea/vcs.xml
+.idea/hotswap_agent.xml
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
@@ -21,6 +22,7 @@ target/
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
+.idea/artifacts/
 
 # Gradle:
 .idea/**/gradle.xml
