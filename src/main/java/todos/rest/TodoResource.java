@@ -13,6 +13,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -46,76 +47,76 @@ import java.util.List;
 @Path("/todos")
 public class TodoResource {
 
-  @Context
-  private UriInfo uriInfo;
+    @Context
+    private UriInfo uriInfo;
 
-  @Inject
-  private TodoService todos;
+    @Inject
+    private TodoService todos;
 
-  @POST
-  @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  public Response create(Todo todo) {
+    @POST
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response create(Todo todo) {
 
-    Todo saved = this.todos.save(todo);
+        Todo saved = this.todos.save(todo);
 
-    URI newLocation = uriInfo.getAbsolutePathBuilder().path(saved.getId().toString()).build();
-    return Response.created(newLocation).build();
-  }
-
-  @GET
-  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  public Response list() {
-    return Response.ok(this.todos.findAll()).build();
-  }
-
-  @GET
-  @Path("/{id}")
-  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  public Response getById(@PathParam("id") Long id) {
-
-    Todo found = this.todos.getById(id);
-    if (found == null) {
-      return Response.status(Response.Status.NOT_FOUND).build();
+        URI newLocation = uriInfo.getAbsolutePathBuilder().path(saved.getId().toString()).build();
+        return Response.created(newLocation).build();
     }
 
-    return Response.ok(found).build();
-  }
-
-  @PUT
-  @Path("/{id}")
-  @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  public Response update(@PathParam("id") Long id, Todo todo) {
-
-    Todo updated = todos.update(id, todo);
-
-    if (updated == null) {
-      return Response.status(Response.Status.NOT_FOUND).build();
+    @GET
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response list() {
+        return Response.ok(new GenericEntity<List<Todo>>(this.todos.findAll()) {}).build();
     }
 
-    return Response.ok(updated).build();
-  }
+    @GET
+    @Path("/{id}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response getById(@PathParam("id") Long id) {
 
-  @DELETE
-  @Path("/{id}")
-  @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  public Response remove(@PathParam("id") Long id) {
+        Todo found = this.todos.getById(id);
+        if (found == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
 
-    if (todos.deleteById(id)) {
-      return Response.noContent().build();
+        return Response.ok(found).build();
     }
 
-    return Response.status(Response.Status.NOT_FOUND).build();
-  }
+    @PUT
+    @Path("/{id}")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response update(@PathParam("id") Long id, Todo todo) {
 
-  @POST
-  @Path("/search")
-  @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-  public Response search(Todo example) {
+        Todo updated = todos.update(id, todo);
 
-    List<?> result = this.todos.findAllByExample(example);
+        if (updated == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
 
-    return Response.ok(result).build();
-  }
+        return Response.ok(updated).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response remove(@PathParam("id") Long id) {
+
+        if (todos.deleteById(id)) {
+            return Response.noContent().build();
+        }
+
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @POST
+    @Path("/search")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response search(Todo example) {
+
+        List<Todo> result = this.todos.findAllByExample(example);
+
+        return Response.ok(new GenericEntity<List<Todo>>(result){}).build();
+    }
 }

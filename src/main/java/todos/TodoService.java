@@ -66,7 +66,7 @@ public class TodoService {
     return em.merge(updated);
   }
 
-  public List<?> findAllByExample(Todo todo) {
+  public List<Todo> findAllByExample(Todo todo) {
 
     if (todo.getId() != null) {
       return Collections.singletonList(getById(todo.getId()));
@@ -76,6 +76,6 @@ public class TodoService {
 
     Example todoExample = Example.create(todo).enableLike(MatchMode.START).excludeZeroes();
 
-    return em.unwrap(Session.class).createCriteria(Todo.class).add(todoExample).list();
+    return (List<Todo>)em.unwrap(Session.class).createCriteria(Todo.class).add(todoExample).list();
   }
 }
